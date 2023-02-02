@@ -14,6 +14,7 @@ const BottomTabNavigator = () => {
         component={HomeScreen}
         options={{
           //   tabBarLabel: "Home",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
@@ -38,6 +39,8 @@ const BottomTabNavigator = () => {
         name="Contact"
         component={ContactScreen}
         options={{
+          headerShown: false,
+
           //   tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-list" color={color} size={size} />
@@ -48,6 +51,8 @@ const BottomTabNavigator = () => {
         name="Picture"
         component={PictureScreen}
         options={{
+          headerShown: false,
+
           //   tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="images-outline" color={color} size={size} />

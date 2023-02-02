@@ -22,10 +22,12 @@ const ContactScreen = () => {
       <Text style={styles.title}>{title}</Text>
     </View>
   );
+  const sort = [...usersData].sort((a, b) => a.firstName > b.firstName ? 1 : -1)
+  
   return (
     <>
       <FlatList
-        data={usersData}
+        data={sort}
         renderItem={({ item }) => <Item title={item.firstName} />}
         keyExtractor={(item) => item.id}
       />

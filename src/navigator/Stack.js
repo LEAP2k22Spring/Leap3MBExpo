@@ -1,34 +1,37 @@
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import DetailScreen from "../screens/Detail";
 import PictureScreen from "../screens/Picture";
 import BottomTabNavigator from "./Bottom";
 
 const Stack = createStackNavigator();
-
+const Drawer = createDrawerNavigator();
 const MyStack = () => {
   return (
-    // <Drawer.Navigator>
-    //     <Drawer.Screen name='Home' component={BottomTabNavigator}/>
-    // </Drawer.Navigator>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Bottom"
-        component={BottomTabNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Detail"
-        component={DetailScreen}
-        options={{
-          headerBackTitle: "Back to Home",
-          headerBackTitleStyle: {
-            fontSize: 15,
-          },
-        }}
-      />
-    </Stack.Navigator>
+    <Drawer.Navigator>
+        <Drawer.Screen name='Home' component={BottomTabNavigator} options={{
+        }}/>
+        <Drawer.Screen name='Detail' component={DetailScreen}/>
+    </Drawer.Navigator>
+    // <Stack.Navigator>
+    //   <Stack.Screen
+    //     name="Bottom"
+    //     component={BottomTabNavigator}
+    //     options={{
+    //       headerShown: false,
+    //     }}
+    //   />
+    //   <Stack.Screen
+    //     name="Detail"
+    //     component={DetailScreen}
+    //     options={{
+    //       headerBackTitle: "Back to Home",
+    //       headerBackTitleStyle: {
+    //         fontSize: 15,
+    //       },
+    //     }}
+    //   />
+    // </Stack.Navigator>
 
   );
 };
