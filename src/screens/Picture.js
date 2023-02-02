@@ -2,14 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import LoadingComp from "../component/LoadingComp";
 
 const PictureScreen = () => {
   const [usersData, setUsersData] = useState([]);
+  const [isEnable, setIsEnable] = useState(false);
+
   useEffect(() => {
     const getUsersData = async () => {
+      setIsEnable(false);
       try {
         const res = await axios.get("https://dummyjson.com/products/1");
         setUsersData(res.data.images);
+        setIsEnable(true);
       } catch (error) {
         console.log("error", error);
       }
@@ -24,20 +29,23 @@ const PictureScreen = () => {
   );
   return (
     <>
-    <ScrollView style={styles.scrollView}>
-      <FlatList
-        data={usersData}
-        renderItem={({ item }) => <Item title={item} />}
-        keyExtractor={(item) => item.id}
-        horizontal
-      />
-      <FlatList
-        data={usersData}
-        renderItem={({ item }) => <Item title={item} />}
-        keyExtractor={(item) => item.id}
-      />
-    </ScrollView>
-    
+      {isEnable ? (
+        <ScrollView style={styles.scrollView}>
+          <FlatList
+            data={usersData}
+            renderItem={({ item }) => <Item title={item} />}
+            keyExtractor={(item, index) => index}
+            horizontal
+          />
+          <FlatList
+            data={usersData}
+            renderItem={({ item }) => <Item title={item} />}
+            keyExtractor={(item, index) => index}
+          />
+        </ScrollView>
+      ) : (
+        <LoadingComp />
+      )}
     </>
   );
 };
@@ -55,7 +63,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   scrollView: {
-    backgroundColor: '#3333',
+    backgroundColor: "#3333",
     // marginHorizontal: 20,
   },
 });

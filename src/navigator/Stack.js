@@ -9,7 +9,7 @@ const Drawer = createDrawerNavigator();
 const MyStack = () => {
   return (
     <Drawer.Navigator>
-        <Drawer.Screen name='Home' component={BottomTabNavigator} options={{
+        <Drawer.Screen name='Header' component={BottomTabNavigator} options={{
         }}/>
         <Drawer.Screen name='Detail' component={DetailScreen}/>
     </Drawer.Navigator>
