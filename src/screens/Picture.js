@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const PictureScreen = () => {
   const [usersData, setUsersData] = useState([]);
@@ -23,6 +24,7 @@ const PictureScreen = () => {
   );
   return (
     <>
+    <ScrollView style={styles.scrollView}>
       <FlatList
         data={usersData}
         renderItem={({ item }) => <Item title={item} />}
@@ -34,6 +36,8 @@ const PictureScreen = () => {
         renderItem={({ item }) => <Item title={item} />}
         keyExtractor={(item) => item.id}
       />
+    </ScrollView>
+    
     </>
   );
 };
@@ -49,6 +53,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     resizeMode: "contain",
+  },
+  scrollView: {
+    backgroundColor: '#3333',
+    // marginHorizontal: 20,
   },
 });
 export default PictureScreen;
