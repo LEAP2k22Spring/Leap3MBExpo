@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import BottomTabNavigator from "../navigator/Bottom";
-
+import analytics from '@react-native-firebase/analytics';
 const RegisterScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
@@ -29,6 +29,17 @@ const RegisterScreen = ({ navigation }) => {
       </View>
       <View style={styles.animationContainer}>
         <Button title="click me" onPress={() => navigation.navigate('Login')}></Button>
+        <Button
+        title="Press me"
+        // Logs in the firebase analytics console as "select_content" event
+        // only accepts the two object properties which accept strings.
+        onPress={async () =>
+          await analytics().logSelectContent({
+            content_type: 'clothing',
+            item_id: 'abcd',
+          })
+        }
+      />
       </View>
     </SafeAreaView>
   );

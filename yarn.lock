@@ -1729,6 +1729,11 @@
     prompts "^2.4.0"
     semver "^6.3.0"
 
+"@react-native-firebase/analytics@^17.1.0":
+  version "17.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-17.1.0.tgz#09591dbc06beadbfccf349aa2bb7551eb4603431"
+  integrity sha512-AnGetxQWGsPaoBAmUE6QPik+PCSTn79zVPAw/IBnrj0FgJ+6lAsaxE8ySTyEP2RNwhlRQHevk1ZR3YDO+gdeJg==
+
 "@react-native-firebase/app@^17.0.0":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-17.0.0.tgz#c5fe15702181af7e42280b6c4def3e2b2787c478"

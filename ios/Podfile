@@ -14,6 +14,7 @@ target 'navigation' do
   pod 'FirebaseCoreInternal', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
+  pod 'FirebaseAnalytics' , :modular_headers => true
   pod 'FirebaseAuth'  
   pod 'FirebaseFirestore'
   use_expo_modules!
