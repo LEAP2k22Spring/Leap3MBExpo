@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import DetailScreen from "../screens/Detail";
+import LoginScreen from "../screens/Login";
 import PictureScreen from "../screens/Picture";
 import RegisterScreen from "../screens/Register";
 import BottomTabNavigator from "./Bottom";
@@ -15,13 +16,20 @@ const MyStack = () => {
     //     <Drawer.Screen name='Detail' component={DetailScreen}/>
     // </Drawer.Navigator>
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Register"
         component={RegisterScreen}
         options={{
           headerShown: false,
         }}
-      /> */}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="Bottom"
         component={BottomTabNavigator}

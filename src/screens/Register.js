@@ -28,24 +28,24 @@ const RegisterScreen = ({ navigation }) => {
         <TextInput style={styles.textInput} keyboardType={'phone-pad'}/>
       </View>
       <View style={styles.animationContainer}>
-        <Button title="click me" onPress={() => console.log("Hey")}></Button>
+        <Button title="click me" onPress={() => navigation.navigate('Login')}></Button>
       </View>
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   animationContainer: {
-    flex:1,
+    // flex:1,
     backgroundColor: "#fff",
     alignItems:'flex-end',
-    justifyContent:'flex-end',
+    justifyContent:'center',
     // flex: 1,
   },
   sectionContainer:{
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    height:50
+    // height:50
   },
   sectionPhoneNumber:{
     display:'flex',

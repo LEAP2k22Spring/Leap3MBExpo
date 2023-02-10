@@ -14,5 +14,13 @@ export const useCollection = () => {
       console.log("error", error);
     }
   };
+
+  const createUser = async ()=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+  }
   return { getData };
 };
