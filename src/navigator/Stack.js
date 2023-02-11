@@ -1,24 +1,17 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
-import DetailScreen from "../screens/Detail";
+import { TouchableOpacity } from "react-native";
 import LoginScreen from "../screens/Login";
-import PictureScreen from "../screens/Picture";
-import RegisterScreen from "../screens/Register";
+import OTPScreen from "../screens/OTP";
 import BottomTabNavigator from "./Bottom";
 
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 const MyStack = () => {
   return (
-    // <Drawer.Navigator>
-    //     <Drawer.Screen name='Header' component={BottomTabNavigator} options={{
-    //     }}/>
-    //     <Drawer.Screen name='Detail' component={DetailScreen}/>
-    // </Drawer.Navigator>
     <Stack.Navigator>
       <Stack.Screen
-        name="Register"
-        component={RegisterScreen}
+        name="Bottom"
+        component={BottomTabNavigator}
         options={{
           headerShown: false,
         }}
@@ -31,12 +24,23 @@ const MyStack = () => {
         }}
       />
       <Stack.Screen
-        name="Bottom"
-        component={BottomTabNavigator}
-        options={{
+        name="OTP"
+        component={OTPScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => {
+            return (
+              <TouchableOpacity
+                style={{ margin: 10 }}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Ionicons name="chevron-back" size={24} color="black" />
+              </TouchableOpacity>
+            );
+          },
           headerShown: false,
-        }}
+        })}
       />
+
       {/* <Stack.Screen
         name="Detail"
         component={DetailScreen}
@@ -48,7 +52,6 @@ const MyStack = () => {
         }}
       /> */}
     </Stack.Navigator>
-
   );
 };
 export default MyStack;

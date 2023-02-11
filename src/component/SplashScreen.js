@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import LottieView from "lottie-react-native";
 
 const SplashScreen = () => {
   return (
     <View style={styles.animationContainer}>
-      <LottieView
+      {/* <LottieView
         autoPlay
         loop
         style={{
@@ -13,7 +13,8 @@ const SplashScreen = () => {
           height: 200,
         }}
         source={require("../../assets/splash.json")}
-      />
+      /> */}
+      <Image style={{width:'100%', height:'100%'}} source={require('../../assets/splash.png')} />
     </View>
   );
 };

@@ -11,13 +11,12 @@ import {
   Text,
   TextInput,
   TouchableNativeFeedback,
+  TouchableOpacity,
   View,
 } from "react-native";
-import { useCollection } from "../../firebase/firebase";
 
-const LoginScreen = ({ navigation }) => {
-  const { getData } = useCollection();
-  const [phoneNumber, setPhoneNumber] = useState("")
+const OTPScreen = ({ navigation }) => {
+  const [code, setCode] = useState("");
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
@@ -30,34 +29,41 @@ const LoginScreen = ({ navigation }) => {
           }}
         >
           <View style={styles.animationContainer}>
-            <View style={[styles.centerView, styles.margin]}>
+            <View style={{ width: "100%" }}>
+              <TouchableOpacity
+                style={{ margin: 10 }}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Ionicons name="chevron-back" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.centerView, styles.margin, {marginTop:90}]}>
               <Ionicons
-                name="phone-portrait-outline"
+                name="chatbox-ellipses-outline"
                 size={35}
                 color="orange"
               />
               <Text style={[styles.sectionContainerText1, styles.margin]}>
-                Enter your mobile number
+                Enter code sent to your phone
               </Text>
               <Text style={styles.sectionContainerText2}>
-                We will send confirmation code
+                We send it to the number {`+976`}
               </Text>
             </View>
-            <View style={styles.phoneInput}>
-              <Text style={styles.textStyle}>+976</Text>
+            <View style={styles.codeInput}>
               <TextInput
-                style={[styles.textInput, { margin: 20 }]}
-                keyboardType={"phone-pad"}
-                onChangeText={text => setPhoneNumber(text)}
+                style={[styles.textInput, { margin: 5 }]}
+                keyboardType={"number-pad"}
+                onChangeText={(text) => setCode(text)}
               />
             </View>
             <View style={styles.loginButtonView}>
-              {/* <Button title="click me" onPress={() => getData()}></Button> */}
-              <Pressable style={[styles.loginButton, styles.centerView]}
-              onPress={()=>{
-                // console.log(phoneNumber)
-                navigation.navigate('OTP')
-              }}>
+              <Pressable
+                style={[styles.loginButton, styles.centerView]}
+                onPress={() => {
+                  console.log("Code");
+                }}
+              >
                 <Text>Enter</Text>
               </Pressable>
             </View>
@@ -68,18 +74,17 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
-  centerView:{
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center'
+  centerView: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   animationContainer: {
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "flex-start",
+    // justifyContent:'center',
     flex: 1,
-    paddingTop: 90,
-    width:'100%'
+    width: "100%",
   },
   textInput: {
     width: 160,
@@ -104,28 +109,23 @@ const styles = StyleSheet.create({
   margin: {
     margin: 10,
   },
-  phoneInput: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+  codeInput: {
     margin: 5,
+    borderWidth: 1,
+    width: "50%",
   },
-  textStyle: {
-    fontSize: 30,
-    color: "#6666",
+  loginButtonView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    width: "100%",
+    alignItems: "center",
+    margin: 10,
   },
-  loginButtonView:{
-    flex:1,
-    justifyContent:'flex-end',
-    width:'100%',
-    alignItems:'center',
-    margin:10
+  loginButton: {
+    width: "90%",
+    height: 40,
+    backgroundColor: "#D3A762",
+    borderRadius: 5,
   },
-  loginButton:{
-    width:'90%',
-    height:40,
-    backgroundColor:'#D3A762',
-    borderRadius:5
-  }
 });
-export default LoginScreen;
+export default OTPScreen;

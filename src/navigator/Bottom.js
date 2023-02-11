@@ -36,26 +36,32 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Contact"
+        name="Scan"
         component={ContactScreen}
         options={{
           headerShown: false,
-
-          //   tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-list" color={color} size={size} />
+            <Ionicons name="ios-scan" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Picture"
+        name="Order"
         component={PictureScreen}
         options={{
           headerShown: false,
-
-          //   tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="images-outline" color={color} size={size} />
+            <Ionicons name="cart-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={PictureScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
       />
