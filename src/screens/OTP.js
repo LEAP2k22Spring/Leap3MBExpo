@@ -14,9 +14,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useAuth } from "../context/AuthContext";
+import firestore from "@react-native-firebase/firestore";
 
 const OTPScreen = ({ navigation }) => {
-  const [code, setCode] = useState("");
+  const { phoneNumber, handleChangeConfirmationCode, confirmCode } = useAuth();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
@@ -37,7 +39,7 @@ const OTPScreen = ({ navigation }) => {
                 <Ionicons name="chevron-back" size={24} color="black" />
               </TouchableOpacity>
             </View>
-            <View style={[styles.centerView, styles.margin, {marginTop:90}]}>
+            <View style={[styles.centerView, styles.margin, { marginTop: 90 }]}>
               <Ionicons
                 name="chatbox-ellipses-outline"
                 size={35}
@@ -47,21 +49,36 @@ const OTPScreen = ({ navigation }) => {
                 Enter code sent to your phone
               </Text>
               <Text style={styles.sectionContainerText2}>
-                We send it to the number {`+976`}
+                We send it to the number {`+976${phoneNumber}`}
               </Text>
             </View>
             <View style={styles.codeInput}>
               <TextInput
                 style={[styles.textInput, { margin: 5 }]}
                 keyboardType={"number-pad"}
-                onChangeText={(text) => setCode(text)}
+                onChangeText={handleChangeConfirmationCode}
               />
             </View>
             <View style={styles.loginButtonView}>
               <Pressable
                 style={[styles.loginButton, styles.centerView]}
-                onPress={() => {
-                  console.log("Code");
+                onPress={async () => {
+                  try {
+                    const isConfirmed = await confirmCode();
+                    if (isConfirmed?.additionalUserInfo?.isNewuser) {
+                      await firestore()
+                        .collection("users")
+                        .doc(isConfirmed?.user?.uid)
+                        .set({
+                          phoneNumber: isConfirmed?.user?.phoneNumber,
+                        });
+                    }else {
+                      navigation.navigate("Profile")
+                      console.log("bna");
+                    }
+                  } catch (error) {
+                    console.log(error);
+                  }
                 }}
               >
                 <Text>Enter</Text>

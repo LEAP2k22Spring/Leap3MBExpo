@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TouchableOpacity } from "react-native";
+import { ItemScreen } from "../screens/Item";
 import LoginScreen from "../screens/Login";
 import OTPScreen from "../screens/OTP";
 import BottomTabNavigator from "./Bottom";
@@ -41,16 +42,13 @@ const MyStack = () => {
         })}
       />
 
-      {/* <Stack.Screen
-        name="Detail"
-        component={DetailScreen}
+      <Stack.Screen
+        name="ItemScreen"
+        component={ItemScreen}
         options={{
-          headerBackTitle: "Back to Home",
-          headerBackTitleStyle: {
-            fontSize: 15,
-          },
+          headerShown:false
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

@@ -1214,7 +1214,7 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.8.0):
+  - RNGestureHandler (2.9.0):
     - React-Core
   - RNReanimated (2.12.0):
     - DoubleConversion
@@ -1542,7 +1542,7 @@ SPEC CHECKSUMS:
   RNFBAuth: 47c73fe3f3a8abe07802a9aa1f2d7820069ec0af
   RNFBCrashlytics: 67576ea8b9e8e1df13632a62df2fa00471f66168
   RNFBFirestore: 3f8e87a47db880f66b798b83393246330a7ddce7
-  RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
+  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   RNReanimated: 2a91e85fcd343f8af3c58d3425b99fdd285590a5
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   Yoga: eca980a5771bf114c41a754098cd85e6e0d90ed7

@@ -1,13 +1,16 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { AuthContextProvider } from "./src/context/AuthContext";
 import { SplashProvider } from "./src/context/SplashContext";
 import MyStack from "./src/navigator/Stack";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <SplashProvider>
-        <MyStack />
-      </SplashProvider>
-    </NavigationContainer>
+    <AuthContextProvider>
+      <NavigationContainer>
+        <SplashProvider>
+          <MyStack />
+        </SplashProvider>
+      </NavigationContainer>
+    </AuthContextProvider>
   );
 }

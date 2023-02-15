@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>971730753928-e5eauecf02sispi1c6gfuc7v9k2dgh05.apps.googleusercontent.com</string>
+	<string>971730753928-mm3uct1rtharlvkusf7kpm6cccsait2a.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.971730753928-e5eauecf02sispi1c6gfuc7v9k2dgh05</string>
+	<string>com.googleusercontent.apps.971730753928-mm3uct1rtharlvkusf7kpm6cccsait2a</string>
 	<key>API_KEY</key>
 	<string>AIzaSyB9KNlC1cLjZnf1YbQrl49vlCZFo-rI8Ig</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>CoffeeShop</string>
+	<string>com.company.coffee</string>
 	<key>PROJECT_ID</key>
 	<string>mobilemb-6f6bf</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:971730753928:ios:ecd06b3d8193062f29423d</string>
+	<string>1:971730753928:ios:d5935116fbfb622929423d</string>
 </dict>
 </plist>

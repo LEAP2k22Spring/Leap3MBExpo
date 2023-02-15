@@ -14,10 +14,10 @@ import {
   View,
 } from "react-native";
 import { useCollection } from "../../firebase/firebase";
+import { useAuth } from "../context/AuthContext";
 
 const LoginScreen = ({ navigation }) => {
-  const { getData } = useCollection();
-  const [phoneNumber, setPhoneNumber] = useState("")
+  const { signInWithPhoneNumber, handleChangePhoneNumber, user } = useAuth();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
@@ -48,16 +48,19 @@ const LoginScreen = ({ navigation }) => {
               <TextInput
                 style={[styles.textInput, { margin: 20 }]}
                 keyboardType={"phone-pad"}
-                onChangeText={text => setPhoneNumber(text)}
+                onChangeText={handleChangePhoneNumber}
               />
             </View>
             <View style={styles.loginButtonView}>
               {/* <Button title="click me" onPress={() => getData()}></Button> */}
-              <Pressable style={[styles.loginButton, styles.centerView]}
-              onPress={()=>{
-                // console.log(phoneNumber)
-                navigation.navigate('OTP')
-              }}>
+              <Pressable
+                style={[styles.loginButton, styles.centerView]}
+                onPress={async () => {
+                  // console.log(phoneNumber)
+                  await signInWithPhoneNumber();
+                  navigation.navigate("OTP");
+                }}
+              >
                 <Text>Enter</Text>
               </Pressable>
             </View>
@@ -68,10 +71,10 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
-  centerView:{
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center'
+  centerView: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   animationContainer: {
     backgroundColor: "#fff",
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flex: 1,
     paddingTop: 90,
-    width:'100%'
+    width: "100%",
   },
   textInput: {
     width: 160,
@@ -114,18 +117,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#6666",
   },
-  loginButtonView:{
-    flex:1,
-    justifyContent:'flex-end',
-    width:'100%',
-    alignItems:'center',
-    margin:10
+  loginButtonView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    width: "100%",
+    alignItems: "center",
+    margin: 10,
   },
-  loginButton:{
-    width:'90%',
-    height:40,
-    backgroundColor:'#D3A762',
-    borderRadius:5
-  }
+  loginButton: {
+    width: "90%",
+    height: 40,
+    backgroundColor: "#D3A762",
+    borderRadius: 5,
+  },
 });
 export default LoginScreen;

@@ -15,7 +15,7 @@ target 'navigation' do
   pod 'GoogleUtilities', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
   pod 'FirebaseAnalytics' , :modular_headers => true
-  pod 'FirebaseAuth'  
+  pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
   pod 'RNFBCrashlytics', :path => '../node_modules/@react-native-firebase/crashlytics'
   use_expo_modules!

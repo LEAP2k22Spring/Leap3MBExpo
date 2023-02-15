@@ -4,9 +4,13 @@ import ContactScreen from "../screens/Contact";
 import { Ionicons } from "@expo/vector-icons";
 import HeaderRigth from "../component/HeaderRigth";
 import PictureScreen from "../screens/Picture";
+import ProfileScreen from "../screens/Profile";
+import { useAuth } from "../context/AuthContext";
+import LoginScreen from "../screens/Login";
 
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
+  const {user} = useAuth();
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -55,16 +59,25 @@ const BottomTabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {user ? <Tab.Screen
         name="Profile"
-        component={PictureScreen}
+        component={ProfileScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
-      />
+      /> : <Tab.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person-outline" color={color} size={size} />
+        ),
+      }}
+    />}
     </Tab.Navigator>
   );
 };
