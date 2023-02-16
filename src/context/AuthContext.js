@@ -15,10 +15,8 @@ export const AuthContextProvider = ({ children }) => {
       if(user) setUser(user);
       if(loading) setLoading(false)
     });
-    console.log("subscriber-", subscriber);
-
     return subscriber;
-  },[user])
+  },[])
 
 
   const signInWithPhoneNumber = async () => {

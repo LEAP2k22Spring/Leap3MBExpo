@@ -65,13 +65,16 @@ const OTPScreen = ({ navigation }) => {
                 onPress={async () => {
                   try {
                     const isConfirmed = await confirmCode();
-                    if (isConfirmed?.additionalUserInfo?.isNewuser) {
+                    console.log(isConfirmed?.additionalUserInfo?.isNewUser);
+                    if (isConfirmed?.additionalUserInfo?.isNewUser) {
+                      console.log("hey");
                       await firestore()
                         .collection("users")
                         .doc(isConfirmed?.user?.uid)
                         .set({
                           phoneNumber: isConfirmed?.user?.phoneNumber,
                         });
+                      navigation.navigate("Profile")
                     }else {
                       navigation.navigate("Profile")
                       console.log("bna");
