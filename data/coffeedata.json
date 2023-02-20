@@ -5,7 +5,7 @@
     "ingredients": ["Espresso", "Steamed Milk"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg/509px-Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg",
     "id": 2,
-    "price" :"$3.12 / spruce"
+    "price" :3
   },
   {
     "title": "Cappuccino",
@@ -13,7 +13,7 @@
     "ingredients": ["Espresso", "Steamed Milk", "Foam"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Wet_Cappuccino_with_heart_latte_art.jpg",
     "id": 3,
-    "price" :"$3.12 / spruce"
+    "price" :3.12
   },
   {
     "title": "Americano",
@@ -21,7 +21,7 @@
     "ingredients": ["Espresso", "Hot Water"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg/1280px-Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg",
     "id": 4,
-    "price" :"$3.12 / spruce"
+    "price" :4
   },
   {
     "title": "Espresso",
@@ -29,7 +29,7 @@
     "ingredients": ["1oz Espresso"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg",
     "id": 5,
-    "price" :"$3.12 / spruce"
+    "price" :4.5
   },
   {
     "title": "Doppio",
@@ -37,7 +37,7 @@
     "ingredients": ["2oz Espresso"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Doppio.jpg/2560px-Doppio.jpg",
     "id": 6,
-    "price" :"$3.12 / spruce"
+    "price" :2
   },
   {
     "title": "Cortado",
@@ -45,7 +45,7 @@
     "ingredients": ["1oz Espresso", "1oz Steamed Milk"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/1/16/Caf%C3%A9Cortado%28Tallat%29.jpg",
     "id": 7,
-    "price" :"$3.12 / spruce"
+    "price" :2.5
   },
   {
     "title": "Red Eye",
@@ -53,6 +53,6 @@
     "ingredients": ["Coffee", "Espresso"],
     "image": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Linea_doubleespresso.jpg",
     "id": 8,
-    "price" :"$3.12 / spruce"
+    "price" :1.5
   }
 ]

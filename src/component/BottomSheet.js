@@ -31,7 +31,7 @@ const BottomSheet = ({ show, onDismiss, enableBackdropDismiss, children }) => {
   };
 
   useEffect(() => {
-    if (show) {
+    if (show !== 0) {
       setOpen(show);
       Animated.timing(bottom, {
         toValue: 0,
@@ -44,7 +44,7 @@ const BottomSheet = ({ show, onDismiss, enableBackdropDismiss, children }) => {
         duration: 500,
         useNativeDriver: false,
       }).start(() => {
-        setOpen(false);
+        setOpen(0);
       });
     }
   }, [show]);
@@ -96,7 +96,9 @@ const BottomSheet = ({ show, onDismiss, enableBackdropDismiss, children }) => {
                 backgroundColor: "#ccc",
               }}
             />
-            <Text style={styles.closeText}>Milk</Text>
+            <Text style={styles.closeText}>
+              {show === 1 ? "Milk" : show === 2 ? "Foam" : "Whipping Cream"}
+            </Text>
             <IconButton
               color="red"
               icon="close"
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
   header: {
     height: 44,
     backgroundColor: "#fff",
-    justifyContent:'center'
+    justifyContent: "center",
   },
   common: {
     shadowColor: "#000",
@@ -136,9 +138,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  closeText:{
-    left:20,
-    fontSize:20
+  closeText: {
+    left: 20,
+    fontSize: 20,
   },
   closeIcon: {
     position: "absolute",

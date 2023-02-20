@@ -7,6 +7,7 @@ import PictureScreen from "../screens/Picture";
 import ProfileScreen from "../screens/Profile";
 import { useAuth } from "../context/AuthContext";
 import LoginScreen from "../screens/Login";
+import GestureScreen from "../screens/GestureScreen";
 
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
@@ -40,8 +41,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Scan"
-        component={ContactScreen}
+        name="Gesture"
+        component={GestureScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (

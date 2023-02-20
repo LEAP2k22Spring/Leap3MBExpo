@@ -11,22 +11,27 @@ import {
   View,
 } from "react-native";
 import coffeedata from "../../data/coffeedata.json";
+import { useAddBag } from "../context/AddBagContext";
 const HomeScreen = ({ navigation }) => {
-  const navigator = useNavigation()
+  const navigator = useNavigation();
+  const { addToBag, setAddToBag } = useAddBag();
   const Item = ({ title, index }) => (
     <TouchableOpacity
       style={[
         styles.item,
         { marginRight: 10, marginLeft: index !== 0 ? 0 : 10 },
       ]}
-      onPress={()=> navigator.navigate("ItemScreen",{
-        imageUrl:title.image
-      })}
+      onPress={() =>
+        navigator.navigate("ItemScreen", {
+          imageUrl: title.image,
+          price: title.price,
+        })
+      }
     >
       <Image style={styles.itemImage} source={{ uri: title.image }} />
       <View style={styles.itemText}>
         <Text style={{ fontSize: 20, fontWeight: "400" }}>{title.title}</Text>
-        <Text>{title.price}</Text>
+        <Text>{`$${title.price} / spruce`}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -39,7 +44,35 @@ const HomeScreen = ({ navigation }) => {
             source={require("../../assets/logo.png")}
           />
           <View style={styles.headerBag}>
-            <Ionicons name="add-circle-outline" size={24} color="black" />
+            <TouchableOpacity
+              style={{
+                width: 50,
+                height: 50,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#FFFFFF33",
+                borderRadius: 50,
+              }}
+              onPress={() => navigator.navigate("BagScreen")}
+            >
+              <Ionicons name="basket-outline" size={24} color="#000" />
+            </TouchableOpacity>
+            <View
+                style={{
+                  position: "absolute",
+                  width: 15,
+                  height: 15,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 50,
+                  backgroundColor: "#D3A762",
+                  // marginTop: -5,
+                  marginTop:10,
+                  right:30
+                }}
+              >
+                <Text style={{ color: "#FFFF", fontSize:10 }}>{addToBag.length}</Text>
+              </View>
           </View>
         </View>
         <View style={styles.bottomHeader}>
@@ -148,7 +181,7 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     alignItems: "flex-end",
-    padding: 20,
+    right:10
   },
   bottomHeader: {
     width: "100%",

@@ -1,9 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TouchableOpacity } from "react-native";
+import { BagScreen } from "../screens/BagScreen";
 import { ItemScreen } from "../screens/Item";
 import LoginScreen from "../screens/Login";
 import OTPScreen from "../screens/OTP";
+import { PaymentScreen } from "../screens/PaymentScreen";
 import BottomTabNavigator from "./Bottom";
 
 const Stack = createStackNavigator();
@@ -45,6 +47,20 @@ const MyStack = () => {
       <Stack.Screen
         name="ItemScreen"
         component={ItemScreen}
+        options={{
+          headerShown:false
+        }}
+      />
+      <Stack.Screen
+        name="BagScreen"
+        component={BagScreen}
+        options={{
+          headerShown:false
+        }}
+      />
+      <Stack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
         options={{
           headerShown:false
         }}
