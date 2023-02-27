@@ -24,7 +24,7 @@ export const BagScreen = ({ navigation }) => {
   };
   const subTotalPrice = addToBag.reduce((acc, el)=>acc + el.itemPrice*el.shot, 0)
   const taxFee = ((subTotalPrice*0.1)).toFixed(2)
-  const totalPrice = subTotalPrice+parseFloat(taxFee)
+  const totalPrice = (subTotalPrice+parseFloat(taxFee)).toFixed(2)
   const navigator = useNavigation()
   return (
     <SafeAreaView style={{ height: "100%" }}>

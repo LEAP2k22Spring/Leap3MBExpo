@@ -16,9 +16,15 @@ import {
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import firestore from "@react-native-firebase/firestore";
+import { useNavigation } from "@react-navigation/native";
 
 const OTPScreen = ({ navigation }) => {
   const { phoneNumber, handleChangeConfirmationCode, confirmCode } = useAuth();
+  // const { data: userData, loading } = useDocument({
+  //   path: "users",
+  //   docId: auth?.currentUser?.uid,
+  // });
+  const navigator = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
@@ -74,9 +80,9 @@ const OTPScreen = ({ navigation }) => {
                         .set({
                           phoneNumber: isConfirmed?.user?.phoneNumber,
                         });
-                      navigation.navigate("Profile")
+                        navigator.navigate("Profile")
                     }else {
-                      navigation.navigate("Profile")
+                      navigator.navigate("Profile")
                       console.log("bna");
                     }
                   } catch (error) {
