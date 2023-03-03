@@ -1723,6 +1723,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@notifee/react-native@^7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.5.0.tgz#3d846b6a607a6352e798a3440cd3880c005a7d56"
+  integrity sha512-FR1xzQI2KpMyLuM7YZyHHjCcOXbjAcBWMeRlarro8peujr6gJZSg4j2Aw4o8O4ifMHDopFrovwyK1uYBaB9MUg==
+
 "@npmcli/fs@^1.0.0":
   version "1.1.1"
   resolved "https://registry.npmjs.org/@npmcli/fs/-/fs-1.1.1.tgz"
@@ -1970,6 +1975,11 @@
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-17.0.0.tgz#96d2410bf9b46c2fbf15d5db2dc721ebc9b5360e"
   integrity sha512-0/4UWq0LmIHmjXBDwtfMo1uxsM8cjD+2P8XOt8H+S/KKExXGpEBT7QQEdMXD98H5PmbMbBiywfA5RSsQAco63A==
+
+"@react-native-firebase/messaging@^17.3.1":
+  version "17.3.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-17.3.1.tgz#6f11218bd0cc93a9c30f000034b1da8057544830"
+  integrity sha512-ApXTjrFaTBgSXtrHtrmpCqAsBXmgE7zpWZ6CHg3RPo0t4W//MoP4xl0KzoNMkH6X9ADe9c0aS9VIrATQ26pNKA==
 
 "@react-native-material/core@^1.3.7":
   version "1.3.7"
@@ -3472,6 +3482,13 @@ expo-constants@~14.0.0, expo-constants@~14.0.2:
     "@expo/config" "~7.0.2"
     uuid "^3.3.2"
 
+expo-contacts@~11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/expo-contacts/-/expo-contacts-11.0.1.tgz#5662e002e76915494ffab2a4b7a52a755769bb5a"
+  integrity sha512-tyoPNySlTgYMnz6dhn47TUpiEbjXYrChruzhsSq0cW/m8Yc8TDT310FuFw0jZQn+FF0a4gMDye2a47YWmtkoOg==
+  dependencies:
+    uuid "^3.4.0"
+
 expo-dev-client@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-2.0.1.tgz#f5878807c96a60d90fc219b6535654cb6ddb9214"
@@ -3523,6 +3540,18 @@ expo-font@~11.0.1:
   integrity sha512-LGAIluWZfru0J0n87dzb6pwAB6TVMTEiLcsd/ktozzbn4DlN7SeQy40+ruU6bvAKCOGrnRneYbKSIOGkrd7oNg==
   dependencies:
     fontfaceobserver "^2.1.0"
+
+expo-image-loader@~4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-4.0.0.tgz#a17e5f95a4c1671791168dd5dfc221bf2f88480c"
+  integrity sha512-hVMhXagsO1cSng5s70IEjuJAuHy2hX/inu5MM3T0ecJMf7L/7detKf22molQBRymerbk6Tzu+20h11eU0n/3jQ==
+
+expo-image-picker@~14.0.2:
+  version "14.0.3"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-14.0.3.tgz#ea0bbe796ccc3bd5e58fc00487be22bac317afeb"
+  integrity sha512-VN5wMWzhYhIRhFq8I1pjMbn/ivjlhWfxzJpz5jUOf3mQ8vxrI5GcR8cJO9kyYwuCrI9W3GUzh/aDt7QRSTQDDA==
+  dependencies:
+    expo-image-loader "~4.0.0"
 
 expo-json-utils@~0.4.0:
   version "0.4.0"
@@ -5989,6 +6018,11 @@ react-native-gradle-plugin@^0.70.3:
   version "0.70.3"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
   integrity sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A==
+
+react-native-image-picker@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-5.1.0.tgz#78b84533a52a8e9704bacf6d18e7c979d9766271"
+  integrity sha512-p506trG3PDSrdm+Yd0QolsnR3FtSe37gkP7OVsMa9UYwn1teaLGzhmx3QMZ4ZBwdV1AKBUFA5HF1ECAVSDTdQQ==
 
 react-native-paper@^5.2.0:
   version "5.2.0"

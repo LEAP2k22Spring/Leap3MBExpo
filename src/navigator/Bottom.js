@@ -52,11 +52,21 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Order"
-        component={PictureScreen}
+        component={ContactScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
       />

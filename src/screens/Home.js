@@ -4,7 +4,9 @@ import {
   Button,
   FlatList,
   Image,
+  Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,9 +14,17 @@ import {
 } from "react-native";
 import coffeedata from "../../data/coffeedata.json";
 import { useAddBag } from "../context/AddBagContext";
+import notifee, { AuthorizationStatus } from "@notifee/react-native";
+import { useEffect } from "react";
+import { requestUserPermission, NotificationListner, GetFCMToken } from "../utils/notification_helper";
+
 const HomeScreen = ({ navigation }) => {
   const navigator = useNavigation();
   const { addToBag, setAddToBag } = useAddBag();
+  // useEffect(()=>{
+  //   requestUserPermission();
+  //   NotificationListner();
+  //   }, [])
   const Item = ({ title, index }) => (
     <TouchableOpacity
       style={[
@@ -35,6 +45,34 @@ const HomeScreen = ({ navigation }) => {
       </View>
     </TouchableOpacity>
   );
+
+  const onDisplayNotification = async () => {
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
+    // await notifee.requestPermission({
+    //   provisional: true,
+    // })
+    const settings = await notifee.requestPermission({
+      provisional: true,
+    });
+    if (settings.authorizationStatus >= AuthorizationStatus.AUTHORIZED) {
+      console.log("Permission settings:", settings);
+    } else {
+      console.log("User declined permissions");
+    }
+    await notifee.displayNotification({
+      id:'123',
+      title: "My first notification",
+      body: "Main body content of the notification",
+      ios: {
+        // criticalVolume:0.9,
+        sound: 'local.wav',
+        },
+    });
+  };
+
   return (
     <SafeAreaView style={{ width: "100%", height: "100%" }}>
       <View style={styles.animationContainer}>
@@ -58,21 +96,23 @@ const HomeScreen = ({ navigation }) => {
               <Ionicons name="basket-outline" size={24} color="#000" />
             </TouchableOpacity>
             <View
-                style={{
-                  position: "absolute",
-                  width: 15,
-                  height: 15,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 50,
-                  backgroundColor: "#D3A762",
-                  // marginTop: -5,
-                  marginTop:10,
-                  right:30
-                }}
-              >
-                <Text style={{ color: "#FFFF", fontSize:10 }}>{addToBag.length}</Text>
-              </View>
+              style={{
+                position: "absolute",
+                width: 15,
+                height: 15,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 50,
+                backgroundColor: "#D3A762",
+                // marginTop: -5,
+                marginTop: 10,
+                right: 30,
+              }}
+            >
+              <Text style={{ color: "#FFFF", fontSize: 10 }}>
+                {addToBag.length}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={styles.bottomHeader}>
@@ -98,10 +138,11 @@ const HomeScreen = ({ navigation }) => {
             flex: 3,
             backgroundColor: "#1E3932",
             width: "90%",
-            margin: 20,
             borderRadius: 10,
             justifyContent: "center",
             position: "relative",
+            marginLeft: 20,
+            marginTop: 20,
           }}
         >
           <Text
@@ -131,7 +172,7 @@ const HomeScreen = ({ navigation }) => {
             />
           </View>
         </View>
-        <View style={{ width: "100%", justifyContent: "center" }}>
+        {/* <View style={{ width: "100%", justifyContent: "center" }}>
           <Text
             style={{
               marginLeft: 20,
@@ -152,6 +193,64 @@ const HomeScreen = ({ navigation }) => {
             keyExtractor={(item, index) => index}
             horizontal
           />
+        </View> */}
+        <View style={{ flex: 5 }}>
+          <ScrollView style={{ width: "100%", height: "100%" }}>
+            <View style={{}}>
+              <Text
+                style={{
+                  marginLeft: 20,
+                  marginBottom: 20,
+                  fontSize: 20,
+                  fontWeight: "400",
+                  marginTop: 20,
+                }}
+              >
+                Your favourite
+              </Text>
+            </View>
+            <View style={styles.itemlist}>
+              <FlatList
+                data={coffeedata}
+                renderItem={({ item, index }) => (
+                  <Item title={item} index={index} />
+                )}
+                keyExtractor={(item, index) => index}
+                horizontal
+              />
+            </View>
+            <View style={{}}>
+              <Text
+                style={{
+                  marginLeft: 20,
+                  marginBottom: 20,
+                  fontSize: 20,
+                  fontWeight: "400",
+                  marginTop: 20,
+                }}
+              >
+                Seasonal drinks
+              </Text>
+            </View>
+            <View style={styles.itemlist}>
+              <FlatList
+                data={coffeedata}
+                renderItem={({ item, index }) => (
+                  <Item title={item} index={index} />
+                )}
+                keyExtractor={(item, index) => index}
+                horizontal
+              />
+            </View>
+            <Pressable
+              style={[styles.loginButton, styles.centerView]}
+              onPress={async () => {
+                onDisplayNotification();
+              }}
+            >
+              <Text>Enter</Text>
+            </Pressable>
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>
@@ -163,6 +262,11 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     justifyContent: "space-between",
     flex: 1,
+  },
+  centerView: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   headerContainer: {
     // width: "100%",
@@ -181,7 +285,7 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     alignItems: "flex-end",
-    right:10
+    right: 10,
   },
   bottomHeader: {
     width: "100%",
@@ -206,7 +310,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   itemlist: {
-    flex: 5,
+    height: 300,
+  },
+  loginButton: {
+    width: "90%",
+    height: 40,
+    backgroundColor: "#D3A762",
+    borderRadius: 5,
+    marginLeft: 20,
   },
 });
 export default HomeScreen;

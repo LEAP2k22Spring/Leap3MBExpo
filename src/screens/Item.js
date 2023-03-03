@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f6ebda",
-    borderWidth: 0,
+    borderWidth: 1,
     borderColor: "orange",
   },
   cupUnSelected: {
