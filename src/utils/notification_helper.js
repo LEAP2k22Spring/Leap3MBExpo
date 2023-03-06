@@ -21,7 +21,7 @@ const GetFCMToken = async () => {
   if (!fcmtoken) {
     try {
       const fcmtoken = await messaging()
-        .getAPNSToken().then()
+        .getToken()
       console.log(fcmtoken, "old token2");
       if (fcmtoken) {
         // await AsyncStorage.setItem("fcmtoken", fcmtoken);

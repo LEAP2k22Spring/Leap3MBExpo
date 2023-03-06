@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  Dimensions,
   Image,
   ImagePickerIOS,
   Platform,
@@ -11,10 +12,22 @@ import {
   View,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import {
+  PanGestureHandler,
+  TapGestureHandler,
+} from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 // const test =
 
 const GestureScreen = () => {
   const [isTrue, setIsTrue] = useState(false);
+  const [emojiIsTrue, setEmojiIsTrue] = useState(false);
+
   const [imageUrl, setImageUrl] = useState("");
   useEffect(() => {
     (async () => {
@@ -22,12 +35,34 @@ const GestureScreen = () => {
         const { status } = ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== "granted") {
           alert("sorry not granted");
-          console.log("status", status);
         }
       }
     })();
   }, []);
-  
+  const emojiScaleup = useSharedValue(1);
+  const scalingStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: emojiScaleup.value }],
+  }));
+  const scaleUpEmoji = useAnimatedGestureHandler({
+    onStart: () => {
+      emojiScaleup.value = withTiming(emojiScaleup.value);
+    },
+    onEnd: () => {
+      if (emojiScaleup.value < 4) {
+        emojiScaleup.value = withTiming(emojiScaleup.value + 3);
+      } else {
+        emojiScaleup.value = withTiming(emojiScaleup.value - 3);
+      }
+    },
+  });
+  const onGesture = (event) => {
+
+    if (event.nativeEvent.translationY > 0) {
+      bottom.setValue(-event.nativeEvent.translationY);
+    }
+    console.log(event.nativeEvent.translationY);
+    console.log(bottom);
+  };
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -40,25 +75,6 @@ const GestureScreen = () => {
       setImageUrl(result.assets[0].uri);
     }
   };
-  // const openGallery = async ()=>{
-  //   const options = {
-  //     storageOptions:{
-  //       path:'image',
-  //       mediaType:'photo'
-  //     },
-  //     includeBase64:true,
-  //   }
-  //   await launchImageLibrary(options, response =>{
-  //     // console.log("response", response.assets);
-  //      if(response.didCancel){
-  //       console.log("user cancelled");
-  //      }else{
-  //       const source = {uri:'data:image/jpeg;base64,' + response.assets[0].base64};
-  //       setImageUrl(source)
-  //   // console.log("imageUrl", imageUrl);
-  //      }
-  //   })
-  // }
   return (
     <SafeAreaView style={{ height: "100%", backgroundColor: "#3333" }}>
       <View
@@ -70,8 +86,26 @@ const GestureScreen = () => {
       >
         <Image
           style={{ height: 300, width: "90%", borderRadius: 20 }}
-          source={imageUrl ? { uri: imageUrl } : require('../../assets/splash.png')}
+          source={
+            imageUrl ? { uri: imageUrl } : require("../../assets/splash.png")
+          }
         />
+        {emojiIsTrue ? (
+          // <PanGestureHandler onGestureEvent={onGesture}>
+            <TapGestureHandler onGestureEvent={scaleUpEmoji} numberOfTaps={2}>
+              <Animated.View
+                style={[scalingStyle, { position: "absolute", top: 100 }]}
+              >
+                <Image
+                  style={{ height: 50, width: 50, borderRadius: 30 }}
+                  source={require("../../assets/smiley.png")}
+                />
+              </Animated.View>
+            </TapGestureHandler>
+          // </PanGestureHandler>
+        ) : (
+          ""
+        )}
       </View>
       {isTrue ? (
         <View
@@ -87,7 +121,9 @@ const GestureScreen = () => {
               name="reload-outline"
               size={24}
               color="black"
-              onPress={() => setIsTrue(false)}
+              onPress={() => {
+                setIsTrue(false), setEmojiIsTrue(false);
+              }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -99,6 +135,7 @@ const GestureScreen = () => {
               alignItems: "center",
               borderRadius: 50,
             }}
+            onPress={() => setEmojiIsTrue(true)}
           >
             <Ionicons name="add-outline" size={24} color="black" />
           </TouchableOpacity>

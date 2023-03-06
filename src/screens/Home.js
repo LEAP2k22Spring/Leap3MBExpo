@@ -21,10 +21,7 @@ import { requestUserPermission, NotificationListner, GetFCMToken } from "../util
 const HomeScreen = ({ navigation }) => {
   const navigator = useNavigation();
   const { addToBag, setAddToBag } = useAddBag();
-  // useEffect(()=>{
-  //   requestUserPermission();
-  //   NotificationListner();
-  //   }, [])
+
   const Item = ({ title, index }) => (
     <TouchableOpacity
       style={[
@@ -46,6 +43,10 @@ const HomeScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
+  useEffect(()=>{
+    requestUserPermission()
+    NotificationListner()
+  },[])
   const onDisplayNotification = async () => {
     const channelId = await notifee.createChannel({
       id: 'default',
@@ -58,7 +59,6 @@ const HomeScreen = ({ navigation }) => {
       provisional: true,
     });
     if (settings.authorizationStatus >= AuthorizationStatus.AUTHORIZED) {
-      console.log("Permission settings:", settings);
     } else {
       console.log("User declined permissions");
     }
@@ -67,7 +67,13 @@ const HomeScreen = ({ navigation }) => {
       title: "My first notification",
       body: "Main body content of the notification",
       ios: {
-        // criticalVolume:0.9,
+        attachments: [
+          {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
+            // thumbnailHidden: true,
+            thumbnailClippingRect: (0.5, 0.5) 
+          },
+          ],
         sound: 'local.wav',
         },
     });
