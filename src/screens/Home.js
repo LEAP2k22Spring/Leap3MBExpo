@@ -43,10 +43,10 @@ const HomeScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  useEffect(()=>{
-    requestUserPermission()
-    NotificationListner()
-  },[])
+  // useEffect(()=>{
+  //   requestUserPermission()
+  //   NotificationListner()
+  // },[])
   const onDisplayNotification = async () => {
     const channelId = await notifee.createChannel({
       id: 'default',

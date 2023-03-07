@@ -40,6 +40,9 @@ const GestureScreen = () => {
     })();
   }, []);
   const emojiScaleup = useSharedValue(1);
+  const emojiDragX = useSharedValue(0);
+  const emojiDragY = useSharedValue(0);
+
   const scalingStyle = useAnimatedStyle(() => ({
     transform: [{ scale: emojiScaleup.value }],
   }));
@@ -55,14 +58,24 @@ const GestureScreen = () => {
       }
     },
   });
-  const onGesture = (event) => {
+  const dragingStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: emojiDragX.value}, {translateY: emojiDragY.value }],
+  }));
+  const dragUpEmoji = useAnimatedGestureHandler({
+    onStart: (event, context) => {
+      context.translateX = emojiDragX.value;
+      context.translateY = emojiDragY.value;
+    },
+    onActive: (event, context) => {
+      emojiDragX.value = context.translateX + event.translationX;
+      emojiDragY.value = context.translateY + event.translationY;
+    },
+    onEnd: (event, context) => {
+      context.translateX = emojiDragX.value;
+      context.translateY = emojiDragY.value;
+    },
+  });
 
-    if (event.nativeEvent.translationY > 0) {
-      bottom.setValue(-event.nativeEvent.translationY);
-    }
-    console.log(event.nativeEvent.translationY);
-    console.log(bottom);
-  };
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -91,18 +104,20 @@ const GestureScreen = () => {
           }
         />
         {emojiIsTrue ? (
-          // <PanGestureHandler onGestureEvent={onGesture}>
-            <TapGestureHandler onGestureEvent={scaleUpEmoji} numberOfTaps={2}>
-              <Animated.View
-                style={[scalingStyle, { position: "absolute", top: 100 }]}
-              >
-                <Image
-                  style={{ height: 50, width: 50, borderRadius: 30 }}
-                  source={require("../../assets/smiley.png")}
-                />
-              </Animated.View>
-            </TapGestureHandler>
-          // </PanGestureHandler>
+          <PanGestureHandler onGestureEvent={dragUpEmoji}>
+            <Animated.View style={[dragingStyle]}>
+              <TapGestureHandler onGestureEvent={scaleUpEmoji} numberOfTaps={2}>
+                <Animated.View
+                  style={[scalingStyle, { position: "absolute", top: 100 }]}
+                >
+                  <Image
+                    style={{ height: 50, width: 50, borderRadius: 30 }}
+                    source={require("../../assets/smiley.png")}
+                  />
+                </Animated.View>
+              </TapGestureHandler>
+            </Animated.View>
+          </PanGestureHandler>
         ) : (
           ""
         )}
