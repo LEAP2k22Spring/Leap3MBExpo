@@ -42,7 +42,6 @@ const GestureScreen = () => {
   const emojiScaleup = useSharedValue(1);
   const emojiDragX = useSharedValue(0);
   const emojiDragY = useSharedValue(0);
-
   const scalingStyle = useAnimatedStyle(() => ({
     transform: [{ scale: emojiScaleup.value }],
   }));
@@ -59,7 +58,10 @@ const GestureScreen = () => {
     },
   });
   const dragingStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: emojiDragX.value}, {translateY: emojiDragY.value }],
+    transform: [
+      { translateX: emojiDragX.value },
+      { translateY: emojiDragY.value },
+    ],
   }));
   const dragUpEmoji = useAnimatedGestureHandler({
     onStart: (event, context) => {
@@ -75,6 +77,14 @@ const GestureScreen = () => {
       context.translateY = emojiDragY.value;
     },
   });
+  const resetButton = () => {
+    {
+      setIsTrue(false),
+        setEmojiIsTrue(false)
+        emojiDragX.value = 0
+        emojiDragY.value = 0
+    }
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -95,6 +105,7 @@ const GestureScreen = () => {
           height: 550,
           justifyContent: "center",
           alignItems: "center",
+          position: "relative",
         }}
       >
         <Image
@@ -105,10 +116,12 @@ const GestureScreen = () => {
         />
         {emojiIsTrue ? (
           <PanGestureHandler onGestureEvent={dragUpEmoji}>
-            <Animated.View style={[dragingStyle]}>
+            <Animated.View
+              style={[dragingStyle, { position: "absolute", zIndex: 100 }]}
+            >
               <TapGestureHandler onGestureEvent={scaleUpEmoji} numberOfTaps={2}>
                 <Animated.View
-                  style={[scalingStyle, { position: "absolute", top: 100 }]}
+                  style={[scalingStyle, { top: 100 }]}
                 >
                   <Image
                     style={{ height: 50, width: 50, borderRadius: 30 }}
@@ -137,7 +150,7 @@ const GestureScreen = () => {
               size={24}
               color="black"
               onPress={() => {
-                setIsTrue(false), setEmojiIsTrue(false);
+                resetButton();
               }}
             />
           </TouchableOpacity>
